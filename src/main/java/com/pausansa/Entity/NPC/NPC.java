@@ -2,6 +2,7 @@ package com.pausansa.Entity.NPC;
 
 import com.pausansa.Entity.Item.Item;
 import com.pausansa.Entity.Item.ItemBuilder;
+import com.pausansa.Exceptions.InventoryFull;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,7 +23,10 @@ public abstract class NPC implements Serializable {
         stock.remove(item);
         System.out.printf("%nThe item %s has been bought for %.2f€, (%.2f€ * %.2f fees %n)",item.getName(),item.getPrice()+(item.getPrice()*this.fee),item.getPrice(),this.getFee());
     }
-    public void buyItem(Item item){
+    public void buyItem(Item item) throws InventoryFull{
+        if(this.stock.size()>= this.maxItems){
+            throw new InventoryFull("The inventory of this NPC is full");
+        }
         item.setPercentageRusted(item.getPercentageRusted()+this.deterioration);
         stock.add(item);
         System.out.println("Article Bought:");

@@ -6,6 +6,7 @@ import com.pausansa.Entity.NPC.Farmer;
 import com.pausansa.Entity.NPC.Merchant;
 import com.pausansa.Entity.NPC.NPC;
 import com.pausansa.Entity.NPC.Thief;
+import com.pausansa.Exceptions.InventoryFull;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -141,6 +142,8 @@ public class App implements Serializable {
             myStock.remove(item);
         } catch(IndexOutOfBoundsException e){
             System.out.println("No Item Found");
+        } catch (InventoryFull e){
+            System.out.println(e.getMessage());
         }
     }
 
