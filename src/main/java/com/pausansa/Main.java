@@ -11,9 +11,13 @@ public class Main {
             App app = new App();
             app.init();
         } else{
-            App app = Serializer.read();
-            app.init();
-            System.out.println("Break");
+            try{
+                App app = Serializer.read();
+                app.init();
+            } catch(Exception e){
+                System.out.println("Saved Game not found");
+            }
+
         }
 
 

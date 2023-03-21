@@ -18,20 +18,14 @@ public class Serializer {
         }
     }
 
-    public static App read(){
+    public static App read() throws Exception{
         App app = null;
-        try {
-            FileInputStream fileIn = new FileInputStream("app.ser");
-            ObjectInputStream input = new ObjectInputStream(fileIn);
-            app = (App) input.readObject();
 
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        FileInputStream fileIn = new FileInputStream("app.ser");
+        ObjectInputStream input = new ObjectInputStream(fileIn);
+        app = (App) input.readObject();
+
+
 
         return app;
     }
